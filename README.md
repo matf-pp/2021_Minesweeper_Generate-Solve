@@ -6,4 +6,4 @@ Projekat ce biti radjen u jeziku Kotlin, u okruzenju IntelliJ IDEA.
 
 ## Autori
 * Mila Lukic (milalukic222@gmail.com)
-* Tara Menjak Maksimovic ()
+* Tara Menjak Maksimovic (taramm19@gmail.com)
