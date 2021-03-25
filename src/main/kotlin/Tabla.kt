@@ -106,7 +106,7 @@ class Tabla (val nivo : Level){
             var array = arrayOf<Int>()
             for (j in 0..(boardEdge-1)){
                 array += 0
-            }
+            } 
             board += array
         }
 
