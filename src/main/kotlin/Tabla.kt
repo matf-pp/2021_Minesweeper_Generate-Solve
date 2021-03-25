@@ -14,6 +14,31 @@ class Tabla (val nivo : Level){
         }
     }
     var board = arrayOf<Array<Int>>()
+    var visibleBoard = arrayOf<Array<Char>>()
+
+    fun showBoard(type : Int) {
+
+        if(type == 0) {
+            for (array in board) {
+                for (j in array) {
+                    print(j)
+                    print("    ")
+                }
+                println()
+            }
+        }
+        else{
+            for (array in visibleBoard) {
+                for (j in array) {
+                    print(j)
+                    print("    ")
+                }
+                println()
+            }
+        }
+    }
+
+
 
     private fun placeMines(){
 
@@ -106,8 +131,17 @@ class Tabla (val nivo : Level){
             var array = arrayOf<Int>()
             for (j in 0..(boardEdge-1)){
                 array += 0
-            } 
+            }
             board += array
+        }
+
+        //vidljivo
+        for (i in 0..(boardEdge-1)){
+            var array = arrayOf<Char>()
+            for (j in 0..(boardEdge-1)){
+                array += '-'
+            }
+            visibleBoard += array
         }
 
         placeMines()
@@ -118,11 +152,47 @@ class Tabla (val nivo : Level){
                     setNumber(i, j)
             }
         }
-
-
-
-
     }
+
+    fun playMove(row: Int, col: Int) : Boolean{
+
+        if(visibleBoard[row][col] != '-')
+            return false
+
+        if(board[row][col] == -1){
+            visibleBoard[row][col] = '*'
+            println("You lost!")
+            showBoard(1)
+            return true
+        }
+
+        else{
+            var adjNum = board[row][col]
+            visibleBoard[row][col] = adjNum.toChar()
+
+            if(adjNum == 0){
+                if(isValid(row-1,col) && board[row-1][col] == -1)
+                    playMove(row-1,col)
+                if(isValid(row+1,col) && board[row+1][col] == -1)
+                    playMove(row+1,col)
+                if(isValid(row,col+1) && board[row][col+1] == -1)
+                    playMove(row,col+1)
+                if(isValid(row,col-1) && board[row][col-1] == -1)
+                    playMove(row,col-1)
+                if(isValid(row-1,col+1) && board[row-1][col+1] == -1)
+                    playMove(row-1,col+1)
+                if(isValid(row-1,col-1) && board[row-1][col-1] == -1)
+                    playMove(row-1,col-1)
+                if(isValid(row+1,col+1) && board[row+1][col+1] == -1)
+                    playMove(row+1,col+1)
+                if(isValid(row+1,col-1) && board[row+1][col-1] == -1)
+                    playMove(row+1,col-1)
+            }
+            return false
+        }
+    }
+
+    
 
 
 
