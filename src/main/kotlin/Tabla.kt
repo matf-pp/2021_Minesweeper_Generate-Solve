@@ -60,9 +60,9 @@ class Tabla (val nivo : Level){
 
 
             if (mines[x][y] == false){
-                mines[x][y] = true
-                board[x][y] = -1
-                minesLeft--
+                    mines[x][y] = true
+                    board[x][y] = -1
+                    minesLeft--
 
             }
         }
