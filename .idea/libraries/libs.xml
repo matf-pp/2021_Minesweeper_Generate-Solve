@@ -33,14 +33,21 @@
       <root url="jar://$PROJECT_DIR$/libs/kotlin-test.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/kotlin-stdlib-jdk7.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/kotlin-stdlib-jdk8.jar!/" />
+      <root url="file://$PROJECT_DIR$/../javafx-sdk-11.0.2/lib" />
     </CLASSES>
     <JAVADOC />
+    <NATIVE>
+      <root url="file://$PROJECT_DIR$/../javafx-sdk-11.0.2/lib" />
+    </NATIVE>
     <SOURCES>
       <root url="jar://$KOTLIN_BUNDLED$/lib/kotlin-stdlib-sources.jar!/" />
       <root url="jar://$KOTLIN_BUNDLED$/lib/kotlin-reflect-sources.jar!/" />
       <root url="jar://$KOTLIN_BUNDLED$/lib/kotlin-test-sources.jar!/" />
       <root url="jar://$KOTLIN_BUNDLED$/lib/kotlin-stdlib-jdk7-sources.jar!/" />
       <root url="jar://$KOTLIN_BUNDLED$/lib/kotlin-stdlib-jdk8-sources.jar!/" />
+      <root url="file://$PROJECT_DIR$/../javafx-sdk-11.0.2/lib" />
     </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../javafx-sdk-11.0.2/lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../javafx-sdk-11.0.2/lib" recursive="false" type="SOURCES" />
   </library>
 </component>
