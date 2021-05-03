@@ -3,6 +3,7 @@ import javafx.geometry.Pos
 import javafx.scene.control.Button
 import javafx.scene.control.ButtonBar
 import javafx.scene.control.Label
+import javafx.scene.control.ToggleGroup
 import javafx.scene.layout.BorderPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
@@ -10,12 +11,24 @@ import tornadofx.*
 import javax.swing.JButton
 
 class MyView : View("Minesweeper_GenerateAndSolve") {
+   private val toggleGroup1 = ToggleGroup()
+   private val toggleGroup2 = ToggleGroup()
 
     override val root: HBox = hbox(20, alignment = Pos.CENTER) {
         style {
             backgroundColor += c("#000000")
 
         }
+        //Ne znam da postavim menubar skroz na vrh gde je naslov MyView klase
+        menubar {
+            alignment=Pos.BASELINE_LEFT
+            menu("Igra"){
+                item("Nova igra", "Shortcut+P").action {  }
+                item("Izlaz", "Shortcut+Q").action {  }
+
+        }
+        }
+
         vbox(10) {
             label("Minesweeper_GenerateAndSolve ") {
                 style {
@@ -41,14 +54,14 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
             hbox {
                 spacing = 40.0
                 alignment = Pos.CENTER
-                button("Igrac") {
+                togglebutton("Igrac", toggleGroup1) {
                     style {
                         fontFamily = "Comic Sans MS"
 
                     }
                     action { }
                 }
-                button("Kompjuter") {
+                togglebutton ("Kompjuter", toggleGroup1) {
                     style{ fontFamily = "Comic Sans MS"}
                     action { }
                 }
@@ -67,22 +80,22 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
             hbox {
                 spacing = 40.0
                 alignment = Pos.CENTER
-                button("Beginner") {
+                togglebutton ("Beginner", toggleGroup2) {
                     style {
                         fontFamily = "Comic Sans MS"
                     }
                     action { }
                 }
-                button("Intermediate") {
+                togglebutton ("Intermediate", toggleGroup2) {
                     style{ fontFamily = "Comic Sans MS"}
                     action { }
                 }
-                button("Advanced") {
+                togglebutton ("Advanced", toggleGroup2) {
                     style{ fontFamily = "Comic Sans MS"}
                     action { }
                 }
             }
-            vbox {
+        /*  Ovo je izbaceno i dodat menubar umesto ovoga   vbox {
                 spacing=40.0
                 alignment=Pos.CENTER
                 label("Izlaz: ") {
@@ -101,7 +114,9 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
                     action { Platform.exit()}
                 }
             }
-            }
+           */
+
+        }
         }
 
     }
