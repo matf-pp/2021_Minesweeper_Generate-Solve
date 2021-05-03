@@ -14,6 +14,7 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
    private val toggleGroup1 = ToggleGroup()
    private val toggleGroup2 = ToggleGroup()
 
+
     override val root: HBox = hbox(20, alignment = Pos.CENTER) {
         style {
             backgroundColor += c("#000000")
@@ -24,7 +25,7 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
             alignment=Pos.BASELINE_LEFT
             menu("Igra"){
                 item("Nova igra", "Shortcut+P").action {  }
-                item("Izlaz", "Shortcut+Q").action {  }
+                item("Izlaz", "Shortcut+Q").action { Platform.exit() }
 
         }
         }
@@ -59,7 +60,7 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
                         fontFamily = "Comic Sans MS"
 
                     }
-                    action { }
+                    action {  }
                 }
                 togglebutton ("Kompjuter", toggleGroup1) {
                     style{ fontFamily = "Comic Sans MS"}
@@ -84,7 +85,9 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
                     style {
                         fontFamily = "Comic Sans MS"
                     }
-                    action { }
+                    action { close()
+                             find<Igra>().openWindow()
+                    }
                 }
                 togglebutton ("Intermediate", toggleGroup2) {
                     style{ fontFamily = "Comic Sans MS"}
@@ -92,7 +95,7 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
                 }
                 togglebutton ("Advanced", toggleGroup2) {
                     style{ fontFamily = "Comic Sans MS"}
-                    action { }
+                    action {   }
                 }
             }
         /*  Ovo je izbaceno i dodat menubar umesto ovoga   vbox {
