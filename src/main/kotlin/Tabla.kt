@@ -1,9 +1,12 @@
 import kotlin.random.Random
 
-class Tabla (val nivo : Level){
+class Tabla (val nivo : Level, val automaticSolver : Boolean){
 
     var boardEdge : Int = 0
     var numOfMines : Int = 0
+
+    var startRow : Int = 0
+    var startCol : Int = 0
 
     private fun getSize(){
         when(nivo.name){
@@ -13,6 +16,14 @@ class Tabla (val nivo : Level){
             else -> 0
         }
     }
+
+    private fun getStartCoords(){
+        if (automaticSolver){
+            startRow = (0..(boardEdge-1)).random()
+            startCol = (0..(boardEdge-1)).random()
+        }
+    }
+
     var board = arrayOf<Array<Int>>()
     var visibleBoard = arrayOf<Array<Char>>()
 
@@ -40,7 +51,7 @@ class Tabla (val nivo : Level){
 
 
 
-    private fun placeMines(){
+    private fun placeMines(rowBegin: Int, colBegin: Int){
 
         var mines = arrayOf<Array<Boolean>>()
 
@@ -58,12 +69,10 @@ class Tabla (val nivo : Level){
             var x = (0..(boardEdge-1)).random()
             var y = (0..(boardEdge-1)).random()
 
-
-            if (mines[x][y] == false){
+            if (mines[x][y] == false && x != rowBegin && y!=colBegin){
                     mines[x][y] = true
                     board[x][y] = -1
                     minesLeft--
-
             }
         }
     }
@@ -144,7 +153,7 @@ class Tabla (val nivo : Level){
             visibleBoard += array
         }
 
-        placeMines()
+        placeMines(startRow, startCol)
 
         for (i in 0..(boardEdge-1)){
             for (j in (0..boardEdge-1)){

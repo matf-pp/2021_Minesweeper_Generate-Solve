@@ -9,6 +9,4 @@ fun main(args:Array<String>) {
     tabla.initializeBoard()
     Application.launch(MyApp::class.java, *args)
 
-
-
 }
