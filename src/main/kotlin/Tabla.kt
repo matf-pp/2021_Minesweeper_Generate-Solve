@@ -17,7 +17,7 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean){
         }
     }
 
-    private fun getStartCoords(){
+    fun getStartCoords(){
         if (automaticSolver){
             startRow = (0..(boardEdge-1)).random()
             startCol = (0..(boardEdge-1)).random()
@@ -32,7 +32,7 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean){
         if(type == 0) {
             for (array in board) {
                 for (j in array) {
-                    print(j)
+                    print(j.toChar())
                     print("    ")
                 }
                 println()
