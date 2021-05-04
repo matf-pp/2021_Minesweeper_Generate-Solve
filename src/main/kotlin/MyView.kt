@@ -24,7 +24,7 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
         menubar {
             alignment=Pos.BASELINE_LEFT
             menu("Igra"){
-                item("Nova igra", "Shortcut+P").action {  }
+               // item("Nova igra", "Shortcut+P").action {  }
                 item("Izlaz", "Shortcut+Q").action { Platform.exit() }
 
         }
@@ -91,11 +91,13 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
                 }
                 togglebutton ("Intermediate", toggleGroup2) {
                     style{ fontFamily = "Comic Sans MS"}
-                    action { }
+                    action {close()
+                        find<Igra1>().openWindow() }
                 }
                 togglebutton ("Advanced", toggleGroup2) {
                     style{ fontFamily = "Comic Sans MS"}
-                    action {   }
+                    action { close()
+                        find<Igra2>().openWindow()  }
                 }
             }
         /*  Ovo je izbaceno i dodat menubar umesto ovoga   vbox {
