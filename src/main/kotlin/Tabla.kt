@@ -26,13 +26,14 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean){
 
     var board = arrayOf<Array<Int>>()
     var visibleBoard = arrayOf<Array<Char>>()
+    var mines = arrayOf<Array<Boolean>>()
 
     fun showBoard(type : Int) {
 
         if(type == 0) {
             for (array in board) {
                 for (j in array) {
-                    print(j.toChar())
+                    print(j)
                     print("    ")
                 }
                 println()
@@ -52,16 +53,6 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean){
 
 
     private fun placeMines(rowBegin: Int, colBegin: Int){
-
-        var mines = arrayOf<Array<Boolean>>()
-
-        for (i in 0..(boardEdge-1)){
-            var array = arrayOf<Boolean>()
-            for (j in 0..(boardEdge-1)){
-                array += false
-            }
-            mines += array
-        }
 
         var minesLeft = numOfMines
         while (minesLeft > 0){
@@ -87,29 +78,6 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean){
 
         var adjacentMines = 0
 
-        /*
-       Count all the mines in the 8 adjacent
-       cells
-
-           N.W   N   N.E
-             \   |   /
-              \  |  /
-           W----Cell----E
-                / | \
-              /   |  \
-           S.W    S   S.E
-
-       Cell-->Current Cell (row, col)
-       N -->  North        (row-1, col)
-       S -->  South        (row+1, col)
-       E -->  East         (row, col+1)
-       W -->  West         (row, col-1)
-       N.E--> North-East   (row-1, col+1)
-       N.W--> North-West   (row-1, col-1)
-       S.E--> South-East   (row+1, col+1)
-       S.W--> South-West   (row+1, col-1)
-   */
-
         if(isValid(row-1,col) && board[row-1][col] == -1)
             adjacentMines++
         if(isValid(row+1,col) && board[row+1][col] == -1)
@@ -128,7 +96,6 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean){
             adjacentMines++
 
         board[row][col] = adjacentMines
-
     }
 
 
@@ -153,12 +120,35 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean){
             visibleBoard += array
         }
 
+        for (i in 0..(boardEdge-1)){
+            var array = arrayOf<Boolean>()
+            for (j in 0..(boardEdge-1)){
+                array += false
+            }
+            mines += array
+        }
+
         placeMines(startRow, startCol)
+
+        val dx =  arrayOf( -1, 0, 1, -1, 0, 1, -1, 0, 1)
+        val dy = arrayOf( 0, 0, 0, -1, -1, -1, 1, 1, 1 )
 
         for (i in 0..(boardEdge-1)){
             for (j in (0..boardEdge-1)){
-                if(board[i][j] != -1)
+                if(!mines[i][j])
                     setNumber(i, j)
+            }
+        }
+
+        for (i in 0..(boardEdge-1)){
+            for (j in (0..boardEdge-1)){
+                if(mines[i][j]) {
+                    var num: Int = 1
+                    for (k in 0..boardEdge - 1)
+                        if (isValid(i + dx[k], j + dy[k]) && mines[i + dx[k]][j + dy[k]])
+                            num++
+                    board[i][j] = num
+                }
             }
         }
     }

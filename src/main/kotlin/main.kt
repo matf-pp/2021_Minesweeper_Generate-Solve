@@ -5,10 +5,11 @@ import tornadofx.*
 class MyApp : App(MyView::class) {
 }
 fun main(args:Array<String>) {
-    val tabla = Tabla(Level.BEGINNER, true)
-    tabla.initializeBoard()
+    val tabla1 = Tabla(Level.BEGINNER, true)
+    tabla1.initializeBoard()
+    tabla1.showBoard(0)
     val solver = Solver(Level.BEGINNER)
-    solver.tabla = tabla
+    solver.tabla = tabla1
     solver.play()
 
 

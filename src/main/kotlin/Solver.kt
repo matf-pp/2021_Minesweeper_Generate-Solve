@@ -22,12 +22,6 @@ class Solver (var level: Level){
     }
 
     private fun isValid(x: Int, y: Int): Boolean{
-//        print(tabla.boardEdge )
-//        print(" ")
-        print(x)
-        print(" ")
-        print(y)
-        print("\n")
         return (x >= 0 && y >= 0 && x < tabla.boardEdge && y < tabla.boardEdge)
     }
 
@@ -36,12 +30,14 @@ class Solver (var level: Level){
         if (!isValid(row,col))
             return false
 
-        for (i in 0..9){
-            if (isValid(row + dx[i], col + dy[i]) && tabla.board[row + dx[i]][col + dy[i]] - 1 <0)
-                return false
+        for (i in 0..8){
+            if (isValid(row + dx[i], col + dy[i])){
+                if( tabla.board[row + dx[i]][col + dy[i]] - 1 <0)
+                    return false
+            }
         }
 
-        for(i in 0..9){
+        for(i in 0..8){
             if (isValid(row + dx[i], col + dy[i]))
                 tabla.board[row + dx[i]][col + dy[i]]--
         }
@@ -79,7 +75,7 @@ class Solver (var level: Level){
                 return true
 
             hasMines[currentX][currentY] = false
-            for(i in 0..9)
+            for(i in 0..8)
                 if(isValid(currentX + dx[i] , currentY + dy[i]))
                     tabla.board[currentX + dx[i]][currentY + dy[i]]++
 
@@ -117,15 +113,15 @@ class Solver (var level: Level){
             visited += array
         }
 
-        solveMinesweeper(hasMines, visited)
-
-        for (i in 0..tabla.boardEdge-1) {
-            for (j in 0..tabla.boardEdge - 1){
-                if(hasMines[i][j]){
-                    tabla.visibleBoard[i][j] = 'x'
-                }
-                else{
-                    tabla.visibleBoard[i][j] = 'y'
+        if(solveMinesweeper(hasMines, visited)){
+             for (i in 0..(tabla.boardEdge-1)) {
+                for (j in 0..(tabla.boardEdge - 1)){
+                    if(hasMines[i][j]){
+                     tabla.visibleBoard[i][j] = 'x'
+                    }
+                    else{
+                        tabla.visibleBoard[i][j] = '_'
+                    }
                 }
             }
         }
