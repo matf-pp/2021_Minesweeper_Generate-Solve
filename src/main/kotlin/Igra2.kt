@@ -64,13 +64,14 @@ class Igra2 : View("Minesweeper_GenerateAndSolve") {
 
             gridpane {
                 alignment = Pos.CENTER
-                for (i in 1..24)
+
+                for (i in 0..23)
                     row {
-                        for (j in 1..24) {
+                        for (j in 0..23) {
                             button("  ") {
                                 action {
                                     setOnMouseClicked {
-                                        text = "2"
+                                        text="2"
                                     }
                                 }
                             }

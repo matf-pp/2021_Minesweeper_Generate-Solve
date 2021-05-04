@@ -64,7 +64,7 @@ class Igra1 : View("Minesweeper_GenerateAndSolve") {
 
             gridpane {
                 alignment = Pos.CENTER
-                for (i in 1..16)
+                for (i in 0..15)
                     row {
                         for (j in 1..16) {
                             button("  ") {

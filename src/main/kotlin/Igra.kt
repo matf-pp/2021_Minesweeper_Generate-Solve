@@ -15,8 +15,10 @@ class Igra : View ("Minesweeper_GenerateAndSolve") {
         menubar {
             alignment = Pos.BASELINE_LEFT
             menu("Igra") {
-                item("Nova igra", "Shortcut+P").action {close()
-                    find<MyView>().openWindow() }
+                item("Nova igra", "Shortcut+P").action {
+                    close()
+                    find<MyView>().openWindow()
+                }
                 item("Izlaz", "Shortcut+Q").action { Platform.exit() }
 
             }
@@ -35,56 +37,63 @@ class Igra : View ("Minesweeper_GenerateAndSolve") {
                 }
             }
 
-                vbox {
+            vbox {
+                alignment = Pos.CENTER
+                label(" Izabrati nacin igranja igre: ") {
+                    style {
+                        paddingAll = 20
+                        fontSize = 25.px
+                        textFill = c("#ffffff")
+                        alignment = Pos.TOP_CENTER
+                        fontFamily = "Comic Sans MS"
+
+                    }
+                }
+                hbox {
+                    spacing = 40.0
                     alignment = Pos.CENTER
-                    label(" Izabrati nacin igranja igre: ") {
+                    togglebutton("Igrac", toggleGroup) {
                         style {
-                            paddingAll = 20
-                            fontSize = 25.px
-                            textFill = c("#ffffff")
-                            alignment = Pos.TOP_CENTER
                             fontFamily = "Comic Sans MS"
 
                         }
+                        action { }
                     }
-                    hbox {
-                        spacing = 40.0
-                        alignment = Pos.CENTER
-                        togglebutton("Igrac", toggleGroup) {
-                            style {
-                                fontFamily = "Comic Sans MS"
-
-                            }
-                            action { }
-                        }
-                        togglebutton("Kompjuter", toggleGroup) {
-                            style { fontFamily = "Comic Sans MS" }
-                            action { }
-                        }
+                    togglebutton("Kompjuter", toggleGroup) {
+                        style { fontFamily = "Comic Sans MS" }
+                        action { }
                     }
                 }
+            }
 
             gridpane {
                 alignment = Pos.CENTER
-                for (i in 1..9)
+                val tabla1 = Tabla(Level.BEGINNER, true)
+                tabla1.initializeBoard()
+                for (i in 0..8)
                     row {
-                        for (j in 1..9) {
+                        for (j in 0..8) {
                             button("  ") {
                                 action {
                                     setOnMouseClicked {
-                                        text = "2"
+                                        if(tabla1.mines[i][j]==true)
+                                            text="*"
+                                            else text = tabla1.board[i][j].toString()
                                     }
                                 }
                             }
 
                         }
                     }
-                }
-
             }
 
         }
+
     }
+
+}
+
+
 
 
 
