@@ -148,7 +148,7 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
             for (j in (0..boardEdge - 1)) {
                 if (mines[i][j]) {
                     var num: Int = 1
-                    for (k in 0..boardEdge - 1)
+                    for (k in 0..8)
                         if (isValid(i + dx[k], j + dy[k]) && mines[i + dx[k]][j + dy[k]])
                             num++
                     board[i][j] = num

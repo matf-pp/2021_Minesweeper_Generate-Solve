@@ -6,6 +6,11 @@ import tornadofx.*
 
 class Igra1 : View("Minesweeper_GenerateAndSolve") {
     private val toggleGroup = ToggleGroup()
+
+    fun setButton(){
+
+    }
+
     override val root: HBox = hbox(20, alignment = Pos.CENTER) {
         style {
             backgroundColor += c("#000000")

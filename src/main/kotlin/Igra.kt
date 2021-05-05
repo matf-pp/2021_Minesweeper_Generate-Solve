@@ -7,6 +7,7 @@ import javafx.scene.paint.Color
 import tornadofx.*
 
 class Igra : View ("Minesweeper_GenerateAndSolve") {
+
     private val toggleGroup = ToggleGroup()
     override val root: HBox = hbox(20, alignment = Pos.CENTER) {
         style {

@@ -75,7 +75,7 @@ class Solver (var level: Level){
                 return true
 
             hasMines[currentX][currentY] = false
-            for(i in 0..8)
+            for(i in 0..tabla.boardEdge-1)
                 if(isValid(currentX + dx[i] , currentY + dy[i]))
                     tabla.board[currentX + dx[i]][currentY + dy[i]]++
 
