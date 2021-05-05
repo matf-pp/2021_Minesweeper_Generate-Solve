@@ -86,7 +86,7 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
                         fontFamily = "Comic Sans MS"
                     }
                     action { close()
-                             find<Igra>().openWindow()
+                             find<IgraMaster1>().openWindow()
                     }
                 }
                 togglebutton ("Intermediate", toggleGroup2) {
