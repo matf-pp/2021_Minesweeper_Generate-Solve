@@ -12,8 +12,7 @@ import javax.swing.JButton
 
 class MyView : View("Minesweeper_GenerateAndSolve") {
    private val toggleGroup1 = ToggleGroup()
-  // private val toggleGroup2 = ToggleGroup()
-
+   private val toggleGroup2 = ToggleGroup()
 
     override val root: HBox = hbox(20, alignment = Pos.CENTER) {
         minHeight=500.0
@@ -61,10 +60,28 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
                 togglebutton("Igrac", toggleGroup1) {
                     style {
                         fontFamily = "Monospace"
-
                     }
                     action { close()
-                        find<IgraMaster1>().openWindow() }
+                        var x : Int = toggleGroup2.selectedToggle.properties.values.indices.first
+                        if (x == 0) {
+                            var tabla = Tabla(Level.BEGINNER, false)
+                            var igra = IgraMaster1(tabla)
+                            igra.openWindow()
+                        }
+                        else if (x == 1) {
+                            var tabla = Tabla(Level.INTERMEDIATE, false)
+                            var igra = IgraMaster1(tabla)
+                            igra.openWindow()
+                        }
+                        else {
+
+                                var tabla = Tabla(Level.BEGINNER, false)
+                                var igra = IgraMaster1(tabla)
+                                igra.openWindow()
+
+                        }
+
+                    }
                 }
                 togglebutton ("Kompjuter", toggleGroup1) {
                     style{ fontFamily = "Monospace"}
@@ -86,26 +103,26 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
             hbox {
                 spacing = 40.0
                 alignment = Pos.CENTER
-                radiobutton  ("Beginner") {
+                radiobutton  ("Beginner", toggleGroup2, 0) {
                     style {
                         fontFamily = "Monospace"
                         textFill = c("#ffffff")
                     }
-                    action { close()
-                             find<IgraMaster1>().openWindow()
-                    }
+//                    action { close()
+//                             find<IgraMaster1>().openWindow()
+//                    }
                 }
-                radiobutton  ("Intermediate") {
+                radiobutton  ("Intermediate", toggleGroup2, 1) {
                     style{ fontFamily = "Monospace"
                         textFill = c("#ffffff")}
-                    action {close()
-                        find<IgraMaster2>().openWindow() }
+//                    action {close()
+//                        find<IgraMaster2>().openWindow() }
                 }
-                radiobutton ("Advanced") {
+                radiobutton ("Advanced", toggleGroup2, 2) {
                     style{ fontFamily = "Monospace"
                             textFill = c("#ffffff")}
-                    action { close()
-                        find<Igra2>().openWindow()  }
+//                    action { close()
+//                        find<Igra2>().openWindow()  }
                 }
             }
         /*  Ovo je izbaceno i dodat menubar umesto ovoga   vbox {

@@ -204,4 +204,19 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
 
     }
 
+    fun ispisi(i: Int) : String{
+        var s = String()
+        if(i==0) {
+            for (i in 0..boardEdge - 1) {
+                for (j in 0..boardEdge - 1) {
+                    s += visibleBoard[i][j].toString()
+                    s += " "
+                }
+                s += "\n"
+            }
+        }
+        print(s)
+        return s
+    }
+
 }
