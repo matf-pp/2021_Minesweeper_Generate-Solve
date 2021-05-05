@@ -12,16 +12,19 @@ import javax.swing.JButton
 
 class MyView : View("Minesweeper_GenerateAndSolve") {
    private val toggleGroup1 = ToggleGroup()
-   private val toggleGroup2 = ToggleGroup()
+  // private val toggleGroup2 = ToggleGroup()
 
 
     override val root: HBox = hbox(20, alignment = Pos.CENTER) {
+        minHeight=500.0
+        minWidth=500.0
         style {
-            backgroundColor += c("#000000")
+            backgroundColor += c("#003366")
+
 
         }
         //Ne znam da postavim menubar skroz na vrh gde je naslov MyView klase
-        menubar {
+      /*  menubar {
             alignment=Pos.BASELINE_LEFT
             menu("Igra"){
                // item("Nova igra", "Shortcut+P").action {  }
@@ -29,26 +32,26 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
 
         }
         }
-
+    */
         vbox(10) {
             label("Minesweeper_GenerateAndSolve ") {
                 style {
                     paddingAll=20
                     fontSize = 40.px
-                    textFill = c("#ff0000")
+                    textFill = c("6699CC")
                     alignment = Pos.CENTER
-                    fontFamily = "Comic Sans MS"
+                    fontFamily = "Monospace"
 
                 }
             }
 
-            label("                  Izabrati nacin igranja igre: ") {
+            label("         Izabrati nacin igranja igre: ") {
                 style {
                     paddingAll=20
                     fontSize = 25.px
                     textFill = c("#ffffff")
                     alignment = Pos.TOP_CENTER
-                    fontFamily = "Comic Sans MS"
+                    fontFamily = "Monospace"
 
                 }
             }
@@ -57,45 +60,50 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
                 alignment = Pos.CENTER
                 togglebutton("Igrac", toggleGroup1) {
                     style {
-                        fontFamily = "Comic Sans MS"
+                        fontFamily = "Monospace"
 
                     }
-                    action {  }
+                    action { close()
+                        find<IgraMaster1>().openWindow() }
                 }
                 togglebutton ("Kompjuter", toggleGroup1) {
-                    style{ fontFamily = "Comic Sans MS"}
-                    action { }
+                    style{ fontFamily = "Monospace"}
+                    action {close()
+                        find<IgraMaster2>().openWindow() }
                 }
             }
 
-            label("                         Izabrati tezinu igre: ") {
+            label("            Izabrati tezinu igre: ") {
                 style {
                     paddingAll=20
                     fontSize = 25.px
                     textFill = c("#ffffff")
                     alignment = Pos.TOP_CENTER
-                    fontFamily = "Comic Sans MS"
+                    fontFamily = "Monospace"
 
                 }
             }
             hbox {
                 spacing = 40.0
                 alignment = Pos.CENTER
-                togglebutton ("Beginner", toggleGroup2) {
+                radiobutton  ("Beginner") {
                     style {
-                        fontFamily = "Comic Sans MS"
+                        fontFamily = "Monospace"
+                        textFill = c("#ffffff")
                     }
                     action { close()
                              find<IgraMaster1>().openWindow()
                     }
                 }
-                togglebutton ("Intermediate", toggleGroup2) {
-                    style{ fontFamily = "Comic Sans MS"}
+                radiobutton  ("Intermediate") {
+                    style{ fontFamily = "Monospace"
+                        textFill = c("#ffffff")}
                     action {close()
-                        find<Igra1>().openWindow() }
+                        find<IgraMaster2>().openWindow() }
                 }
-                togglebutton ("Advanced", toggleGroup2) {
-                    style{ fontFamily = "Comic Sans MS"}
+                radiobutton ("Advanced") {
+                    style{ fontFamily = "Monospace"
+                            textFill = c("#ffffff")}
                     action { close()
                         find<Igra2>().openWindow()  }
                 }
