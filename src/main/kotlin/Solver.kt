@@ -1,5 +1,3 @@
-import kotlin.reflect.jvm.internal.impl.utils.DFS
-
 class Solver (var level: Level){
 
     var tabla : Tabla = Tabla(level, true)
@@ -32,14 +30,14 @@ class Solver (var level: Level){
 
         for (i in 0..8){
             if (isValid(row + dx[i], col + dy[i])){
-                if( tabla.board[row + dx[i]][col + dy[i]] - 1 <0)
+                if( tabla.boardRacunar[row + dx[i]][col + dy[i]] - 1 <0)
                     return false
             }
         }
 
         for(i in 0..8){
             if (isValid(row + dx[i], col + dy[i]))
-                tabla.board[row + dx[i]][col + dy[i]]--
+                tabla.boardRacunar[row + dx[i]][col + dy[i]]--
         }
 
         return true
@@ -77,7 +75,7 @@ class Solver (var level: Level){
             hasMines[currentX][currentY] = false
             for(i in 0..tabla.boardEdge-1)
                 if(isValid(currentX + dx[i] , currentY + dy[i]))
-                    tabla.board[currentX + dx[i]][currentY + dy[i]]++
+                    tabla.boardRacunar[currentX + dx[i]][currentY + dy[i]]++
 
         }
 

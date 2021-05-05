@@ -1,9 +1,7 @@
 import javafx.application.Platform
 import javafx.geometry.Pos
-import javafx.scene.control.Button
 import javafx.scene.control.ToggleGroup
 import javafx.scene.layout.HBox
-import javafx.scene.paint.Color
 import tornadofx.*
 
 class Igra : View ("Minesweeper_GenerateAndSolve") {
@@ -79,7 +77,7 @@ class Igra : View ("Minesweeper_GenerateAndSolve") {
                                     setOnMouseClicked {
                                         if(tabla1.mines[i][j]==true)
                                             text="*"
-                                            else text = tabla1.board[i][j].toString()
+                                            else text = tabla1.boardIgrac[i][j].toString()
                                     }
                                 }
                             }

@@ -1,5 +1,3 @@
-import kotlin.random.Random
-
 class Tabla (val nivo : Level, val automaticSolver : Boolean) {
 
     var boardEdge: Int = 0
@@ -30,14 +28,15 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
         }
     }
 
-    var board = arrayOf<Array<Int>>()
+    var boardIgrac = arrayOf<Array<Int>>()
+    var boardRacunar = arrayOf<Array<Int>>()
     var visibleBoard = arrayOf<Array<Char>>()
     var mines = arrayOf<Array<Boolean>>()
 
     fun showBoard(type: Int) {
 
         if (type == 0) {
-            for (array in board) {
+            for (array in boardIgrac) {
                 for (j in array) {
                     print(j)
                     print("    ")
@@ -66,7 +65,7 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
 
             if (mines[x][y] == false && x != rowBegin && y != colBegin) {
                 mines[x][y] = true
-                board[x][y] = -1
+                boardIgrac[x][y] = -1
                 minesLeft--
             }
         }
@@ -82,24 +81,25 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
 
         var adjacentMines = 0
 
-        if (isValid(row - 1, col) && board[row - 1][col] == -1)
+        if (isValid(row - 1, col) && boardIgrac[row - 1][col] == -1)
             adjacentMines++
-        if (isValid(row + 1, col) && board[row + 1][col] == -1)
+        if (isValid(row + 1, col) && boardIgrac[row + 1][col] == -1)
             adjacentMines++
-        if (isValid(row, col + 1) && board[row][col + 1] == -1)
+        if (isValid(row, col + 1) && boardIgrac[row][col + 1] == -1)
             adjacentMines++
-        if (isValid(row, col - 1) && board[row][col - 1] == -1)
+        if (isValid(row, col - 1) && boardIgrac[row][col - 1] == -1)
             adjacentMines++
-        if (isValid(row - 1, col + 1) && board[row - 1][col + 1] == -1)
+        if (isValid(row - 1, col + 1) && boardIgrac[row - 1][col + 1] == -1)
             adjacentMines++
-        if (isValid(row - 1, col - 1) && board[row - 1][col - 1] == -1)
+        if (isValid(row - 1, col - 1) && boardIgrac[row - 1][col - 1] == -1)
             adjacentMines++
-        if (isValid(row + 1, col + 1) && board[row + 1][col + 1] == -1)
+        if (isValid(row + 1, col + 1) && boardIgrac[row + 1][col + 1] == -1)
             adjacentMines++
-        if (isValid(row + 1, col - 1) && board[row + 1][col - 1] == -1)
+        if (isValid(row + 1, col - 1) && boardIgrac[row + 1][col - 1] == -1)
             adjacentMines++
 
-        board[row][col] = adjacentMines
+        boardIgrac[row][col] = adjacentMines
+        boardRacunar[row][col] = adjacentMines
     }
 
 
@@ -112,7 +112,15 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
             for (j in 0..(boardEdge - 1)) {
                 array += 0
             }
-            board += array
+            boardIgrac += array
+        }
+
+        for (i in 0..(boardEdge - 1)) {
+            var array = arrayOf<Int>()
+            for (j in 0..(boardEdge - 1)) {
+                array += 0
+            }
+            boardRacunar += array
         }
 
         //vidljivo
@@ -151,7 +159,8 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
                     for (k in 0..8)
                         if (isValid(i + dx[k], j + dy[k]) && mines[i + dx[k]][j + dy[k]])
                             num++
-                    board[i][j] = num
+                    boardRacunar[i][j] = num
+                    boardIgrac[i][j] = -1
                 }
             }
         }
@@ -162,31 +171,31 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
         if (visibleBoard[row][col] != '-')
             return false
 
-        if (board[row][col] == -1) {
+        if (boardIgrac[row][col] == -1) {
             visibleBoard[row][col] = '*'
             println("You lost!")
             showBoard(1)
             return true
         } else {
-            var adjNum = board[row][col]
+            var adjNum = boardIgrac[row][col]
             visibleBoard[row][col] = adjNum.toChar()
 
             if (adjNum == 0) {
-                if (isValid(row - 1, col) && board[row - 1][col] == -1)
+                if (isValid(row - 1, col) && boardIgrac[row - 1][col] == -1)
                     playMove(row - 1, col)
-                if (isValid(row + 1, col) && board[row + 1][col] == -1)
+                if (isValid(row + 1, col) && boardIgrac[row + 1][col] == -1)
                     playMove(row + 1, col)
-                if (isValid(row, col + 1) && board[row][col + 1] == -1)
+                if (isValid(row, col + 1) && boardIgrac[row][col + 1] == -1)
                     playMove(row, col + 1)
-                if (isValid(row, col - 1) && board[row][col - 1] == -1)
+                if (isValid(row, col - 1) && boardIgrac[row][col - 1] == -1)
                     playMove(row, col - 1)
-                if (isValid(row - 1, col + 1) && board[row - 1][col + 1] == -1)
+                if (isValid(row - 1, col + 1) && boardIgrac[row - 1][col + 1] == -1)
                     playMove(row - 1, col + 1)
-                if (isValid(row - 1, col - 1) && board[row - 1][col - 1] == -1)
+                if (isValid(row - 1, col - 1) && boardIgrac[row - 1][col - 1] == -1)
                     playMove(row - 1, col - 1)
-                if (isValid(row + 1, col + 1) && board[row + 1][col + 1] == -1)
+                if (isValid(row + 1, col + 1) && boardIgrac[row + 1][col + 1] == -1)
                     playMove(row + 1, col + 1)
-                if (isValid(row + 1, col - 1) && board[row + 1][col - 1] == -1)
+                if (isValid(row + 1, col - 1) && boardIgrac[row + 1][col - 1] == -1)
                     playMove(row + 1, col - 1)
             }
             return false
