@@ -33,25 +33,26 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
     var visibleBoard = arrayOf<Array<Char>>()
     var mines = arrayOf<Array<Boolean>>()
 
-    fun showBoard(type: Int) {
-
+    fun showBoard(type: Int): String {
+        val tekst = StringBuilder()
         if (type == 0) {
             for (array in boardIgrac) {
                 for (j in array) {
-                    print(j)
-                    print("    ")
+                    tekst.append(j)
+                    tekst.append("    ")
                 }
-                println()
+                tekst.append("\n")
             }
         } else {
             for (array in visibleBoard) {
                 for (j in array) {
-                    print(j)
-                    print("    ")
+                    tekst.append(j)
+                    tekst.append("    ")
                 }
-                println()
+                tekst.append("\n")
             }
         }
+        return tekst.toString()
     }
 
 
