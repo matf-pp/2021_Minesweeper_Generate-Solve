@@ -73,8 +73,13 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
                 }
                 togglebutton ("Kompjuter", toggleGroup1) {
                     style{ fontFamily = "Monospace"}
-                    action {close()
-                        find<IgraMaster2>().openWindow() }
+                    action {
+                        val selectedLevel: Level?=toggleGroup2.selectedValueProperty<Level>().value
+                        if(selectedLevel!=null){
+                            val tabla=Tabla(selectedLevel, true)
+                            val igra=IgraMaster2(tabla)
+                            igra.openWindow() }
+                    }
                 }
             }
 
