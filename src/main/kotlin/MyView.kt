@@ -61,26 +61,14 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
                     style {
                         fontFamily = "Monospace"
                     }
-                    action { close()
-                        var x : Int = toggleGroup2.selectedToggle.properties.values.indices.first
-                        if (x == 0) {
-                            var tabla = Tabla(Level.BEGINNER, false)
-                            var igra = IgraMaster1(tabla)
+                    action {
+                        val selectedLevel: Level?=toggleGroup2.selectedValueProperty<Level>().value
+                        if(selectedLevel!=null){
+                            val tabla=Tabla(selectedLevel, false)
+                            val igra=IgraMaster1(tabla)
                             igra.openWindow()
-                        }
-                        else if (x == 1) {
-                            var tabla = Tabla(Level.INTERMEDIATE, false)
-                            var igra = IgraMaster1(tabla)
-                            igra.openWindow()
-                        }
-                        else {
-
-                                var tabla = Tabla(Level.BEGINNER, false)
-                                var igra = IgraMaster1(tabla)
-                                igra.openWindow()
 
                         }
-
                     }
                 }
                 togglebutton ("Kompjuter", toggleGroup1) {
@@ -103,7 +91,7 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
             hbox {
                 spacing = 40.0
                 alignment = Pos.CENTER
-                radiobutton  ("Beginner", toggleGroup2, 0) {
+                radiobutton  ("Beginner", toggleGroup2,Level.BEGINNER) {
                     style {
                         fontFamily = "Monospace"
                         textFill = c("#ffffff")
@@ -112,13 +100,13 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
 //                             find<IgraMaster1>().openWindow()
 //                    }
                 }
-                radiobutton  ("Intermediate", toggleGroup2, 1) {
+                radiobutton  ("Intermediate", toggleGroup2,Level.INTERMEDIATE) {
                     style{ fontFamily = "Monospace"
                         textFill = c("#ffffff")}
 //                    action {close()
 //                        find<IgraMaster2>().openWindow() }
                 }
-                radiobutton ("Advanced", toggleGroup2, 2) {
+                radiobutton ("Advanced", toggleGroup2, Level.ADVANCED) {
                     style{ fontFamily = "Monospace"
                             textFill = c("#ffffff")}
 //                    action { close()
