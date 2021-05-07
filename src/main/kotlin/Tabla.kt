@@ -184,7 +184,7 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
     fun playMove(row: Int, col: Int, isMine: Boolean): Boolean {
 
 
-        if (visibleBoard[row][col] != '-' || visibleBoard[row][col] != '?')
+        if (visibleBoard[row][col] != '-' && visibleBoard[row][col] != '?')
             return false
 
         if(!isMine){
