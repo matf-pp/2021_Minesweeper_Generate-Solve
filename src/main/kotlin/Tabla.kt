@@ -191,6 +191,7 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
         if (boardIgrac[row][col] == -1) {
             visibleBoard[row][col] = '*'
             println("You lost!")
+            isDone = true
             showBoard(1)
             return true
         } else {
