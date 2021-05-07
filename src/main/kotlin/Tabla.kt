@@ -6,16 +6,21 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
     var startRow: Int = 0
     var startCol: Int = 0
 
+    var minesLeft : Int = 0
+
+
+    var isDone : Boolean = false
+
     private fun getSize() {
         when (nivo.name) {
             "BEGINNER" -> {
-                boardEdge = 9; numOfMines = 10
+                boardEdge = 9; numOfMines = 10; minesLeft = 10
             }
             "INTERMEDIATE" -> {
-                boardEdge = 16; numOfMines = 40
+                boardEdge = 16; numOfMines = 40; minesLeft = 40
             }
             "ADVANCED" -> {
-                boardEdge = 24; numOfMines = 99
+                boardEdge = 24; numOfMines = 99; minesLeft = 99
             }
             else -> 0
         }
@@ -43,8 +48,17 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
                 }
                 tekst.append("\n")
             }
-        } else {
+        } else if (type == 1){
             for (array in visibleBoard) {
+                for (j in array) {
+                    tekst.append(j)
+                    tekst.append("    ")
+                }
+                tekst.append("\n")
+            }
+        }
+        else if (type == 2){
+            for (array in boardRacunar) {
                 for (j in array) {
                     tekst.append(j)
                     tekst.append("    ")
@@ -167,11 +181,13 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
         }
     }
 
-    fun playMove(row: Int, col: Int): Boolean {
+    fun playMove(row: Int, col: Int, isMine: Boolean): Boolean {
 
-        if (visibleBoard[row][col] != '-')
+
+        if (visibleBoard[row][col] != '-' || visibleBoard[row][col] != '?')
             return false
 
+        if(!isMine){
         if (boardIgrac[row][col] == -1) {
             visibleBoard[row][col] = '*'
             println("You lost!")
@@ -183,41 +199,43 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
 
             if (adjNum == 0) {
                 if (isValid(row - 1, col) && boardIgrac[row - 1][col] == -1)
-                    playMove(row - 1, col)
+                    playMove(row - 1, col, isMine)
                 if (isValid(row + 1, col) && boardIgrac[row + 1][col] == -1)
-                    playMove(row + 1, col)
+                    playMove(row + 1, col, isMine)
                 if (isValid(row, col + 1) && boardIgrac[row][col + 1] == -1)
-                    playMove(row, col + 1)
+                    playMove(row, col + 1,isMine)
                 if (isValid(row, col - 1) && boardIgrac[row][col - 1] == -1)
-                    playMove(row, col - 1)
+                    playMove(row, col - 1,isMine)
                 if (isValid(row - 1, col + 1) && boardIgrac[row - 1][col + 1] == -1)
-                    playMove(row - 1, col + 1)
+                    playMove(row - 1, col + 1,isMine)
                 if (isValid(row - 1, col - 1) && boardIgrac[row - 1][col - 1] == -1)
-                    playMove(row - 1, col - 1)
+                    playMove(row - 1, col - 1, isMine)
                 if (isValid(row + 1, col + 1) && boardIgrac[row + 1][col + 1] == -1)
-                    playMove(row + 1, col + 1)
+                    playMove(row + 1, col + 1, isMine)
                 if (isValid(row + 1, col - 1) && boardIgrac[row + 1][col - 1] == -1)
-                    playMove(row + 1, col - 1)
+                    playMove(row + 1, col - 1, isMine)
             }
             return false
-        }
-
-
-    }
-
-    fun ispisi(i: Int) : String{
-        var s = String()
-        if(i==0) {
-            for (i in 0..boardEdge - 1) {
-                for (j in 0..boardEdge - 1) {
-                    s += visibleBoard[i][j].toString()
-                    s += " "
-                }
-                s += "\n"
             }
         }
-        print(s)
-        return s
-    }
 
+        else{
+            if(visibleBoard[row][col] == '-') {
+                visibleBoard[row][col] = '?'
+                if (mines[row][col])
+                    minesLeft --
+            }
+            else if (visibleBoard[row][col] == '?') {
+                visibleBoard[row][col] = '-'
+                if (mines[row][col])
+                    minesLeft ++
+            }
+
+            if (minesLeft == 0)
+                isDone = true
+
+            return true
+        }
+
+    }
 }
