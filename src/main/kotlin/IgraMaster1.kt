@@ -17,6 +17,8 @@ class IgraMaster1(val tabla: Tabla): View("Minesweeper_GenerateAndSolve") {
     enum class Izbor{
        MINA,OTVORI
    }
+    private val koordinatax=SimpleObjectProperty<String>()
+    private val koordinatay=SimpleObjectProperty<String>()
     private val selectedIzborProperty=SimpleObjectProperty<Izbor>()
     override val root: HBox = hbox(20, alignment = Pos.CENTER) {
         style {
@@ -44,9 +46,7 @@ class IgraMaster1(val tabla: Tabla): View("Minesweeper_GenerateAndSolve") {
                         fontFamily = "Monospace"
                     }
                 }
-                textfield {
-
-                }
+                textfield(koordinatax)
             }
             hbox{
                 label("y: "){
@@ -55,22 +55,19 @@ class IgraMaster1(val tabla: Tabla): View("Minesweeper_GenerateAndSolve") {
                         fontFamily = "Monospace"
                     }
                 }
-                textfield {
-
-                }
+                textfield(koordinatay)
             }
             vbox{
                 spacing=30.0
                 togglegroup {
                     bind(selectedIzborProperty)
-                radiobutton("Mina"){
-
+                radiobutton("Mina", value = Izbor.MINA){
                     style{
                         textFill=Color.WHITE
                         fontFamily = "Monospace"
                     }
                 }
-                radiobutton("Otvori") {
+                radiobutton("Otvori", value = Izbor.OTVORI) {
                     style {
                         textFill = Color.WHITE
                         fontFamily = "Monospace"
@@ -82,7 +79,18 @@ class IgraMaster1(val tabla: Tabla): View("Minesweeper_GenerateAndSolve") {
                         style {
                             fontFamily = "Monospace"
                         }
-                        action {}
+                        action {
+                            val x=koordinatax.value.toIntOrNull()
+                            val y=koordinatay.value.toIntOrNull()
+                            if( x!= null && y!=null){
+                                when(selectedIzborProperty.value){
+                                    Izbor.MINA -> { tabla.playMove(x,y,true) }
+                                    Izbor.OTVORI -> { tabla.playMove(x,y, false)}
+                                    null-> { }
+                                }
+                              prostor.text=tabla.showBoard(1)
+                            }
+                        }
                     }
                 }
             }
