@@ -12,7 +12,9 @@ import javax.swing.JButton
 
 class MyView : View("Minesweeper_GenerateAndSolve") {
    private val toggleGroup1 = ToggleGroup()
-   private val toggleGroup2 = ToggleGroup()
+   private val toggleGroup2 = ToggleGroup().apply {
+       selectedValueProperty<Level>().value = Level.BEGINNER
+   }
 
     override val root: HBox = hbox(20, alignment = Pos.CENTER) {
         minHeight=500.0
@@ -67,7 +69,8 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
                             val tabla=Tabla(selectedLevel, false)
                             val igra=IgraMaster1(tabla)
                             igra.openWindow()
-
+                        } else {
+                            println("selectedLevel is null")
                         }
                     }
                 }
@@ -76,8 +79,7 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
                     action {
                         val selectedLevel: Level?=toggleGroup2.selectedValueProperty<Level>().value
                         if(selectedLevel!=null){
-                            val tabla=Tabla(selectedLevel, true)
-                            val igra=IgraMaster2(tabla)
+                            val igra=IgraMaster2(selectedLevel)
                             igra.openWindow() }
                     }
                 }
