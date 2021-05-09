@@ -21,19 +21,7 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
         minWidth=500.0
         style {
             backgroundColor += c("#003366")
-
-
         }
-        //Ne znam da postavim menubar skroz na vrh gde je naslov MyView klase
-      /*  menubar {
-            alignment=Pos.BASELINE_LEFT
-            menu("Igra"){
-               // item("Nova igra", "Shortcut+P").action {  }
-                item("Izlaz", "Shortcut+Q").action { Platform.exit() }
-
-        }
-        }
-    */
         vbox(10) {
             label("Minesweeper_GenerateAndSolve ") {
                 style {
@@ -103,21 +91,15 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
                         fontFamily = "Monospace"
                         textFill = c("#ffffff")
                     }
-//                    action { close()
-//                             find<IgraMaster1>().openWindow()
-//                    }
+                    isSelected = true
                 }
                 radiobutton  ("Intermediate", toggleGroup2,Level.INTERMEDIATE) {
                     style{ fontFamily = "Monospace"
                         textFill = c("#ffffff")}
-//                    action {close()
-//                        find<IgraMaster2>().openWindow() }
                 }
                 radiobutton ("Advanced", toggleGroup2, Level.ADVANCED) {
                     style{ fontFamily = "Monospace"
                             textFill = c("#ffffff")}
-//                    action { close()
-//                        find<Igra2>().openWindow()  }
                 }
             }
         /*  Ovo je izbaceno i dodat menubar umesto ovoga   vbox {

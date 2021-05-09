@@ -6,21 +6,21 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
     var startRow: Int = 0
     var startCol: Int = 0
 
-    var minesLeft : Int = 0
-
+    private var minesLeft : Int = 0
+    var flagsLeft: Int = 0
 
     var isDone : Boolean = false
 
     private fun getSize() {
         when (nivo.name) {
             "BEGINNER" -> {
-                boardEdge = 9; numOfMines = 10; minesLeft = 10
+                boardEdge = 9; numOfMines = 10; minesLeft = 10; flagsLeft = 10
             }
             "INTERMEDIATE" -> {
-                boardEdge = 16; numOfMines = 40; minesLeft = 40
+                boardEdge = 16; numOfMines = 40; minesLeft = 40; flagsLeft = 40
             }
             "ADVANCED" -> {
-                boardEdge = 24; numOfMines = 99; minesLeft = 99
+                boardEdge = 24; numOfMines = 99; minesLeft = 99; flagsLeft = 99
             }
             else -> 0
         }
@@ -40,31 +40,20 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
 
     fun showBoard(type: Int): String {
         val tekst = StringBuilder()
-        if (type == 0) {
-            for (array in boardIgrac) {
-                for (j in array) {
-                    tekst.append(j)
-                    tekst.append("    ")
-                }
-                tekst.append("\n")
-            }
-        } else if (type == 1){
-            for (array in visibleBoard) {
-                for (j in array) {
-                    tekst.append(j)
-                    tekst.append("  ")
-                }
-                tekst.append("\n")
-            }
+        val board = when (type) {
+            0 -> boardIgrac
+            1 -> visibleBoard
+            2 -> boardRacunar
+            else -> error("Slucaj nije pokriven")
         }
-        else if (type == 2){
-            for (array in boardRacunar) {
-                for (j in array) {
-                    tekst.append(j)
-                    tekst.append("    ")
-                }
-                tekst.append("\n")
+
+        for (array in board) {
+            for (j in array) {
+                tekst.append(if (j is Int && j >= 0) " " else "")
+                tekst.append(j)
+                tekst.append(" ")
             }
+            tekst.append("\n")
         }
         return tekst.toString()
     }
@@ -225,11 +214,13 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
         else{
             if(visibleBoard[row][col] == '-') {
                 visibleBoard[row][col] = '?'
+                flagsLeft--
                 if (mines[row][col])
                     minesLeft --
             }
             else if (visibleBoard[row][col] == '?') {
                 visibleBoard[row][col] = '-'
+                flagsLeft++
                 if (mines[row][col])
                     minesLeft ++
             }

@@ -27,6 +27,10 @@ class IgraMaster2(private val level: Level): View("Minesweeper_GenerateAndSolve"
               }
             }
            prostor1= textarea() {
+               style {
+                   fontFamily = "Monospace"
+               }
+               isEditable = false
                text=tabla.showBoard(2)
                 minHeight=500.0
                 minWidth=500.0
@@ -52,6 +56,10 @@ class IgraMaster2(private val level: Level): View("Minesweeper_GenerateAndSolve"
             }
             }
             prostor2=textarea {
+                style {
+                    fontFamily = "Monospace"
+                }
+                isEditable = false
                 minHeight=500.0
                 minWidth=500.0
                 maxWidth=500.0
