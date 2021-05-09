@@ -52,7 +52,7 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
             for (array in visibleBoard) {
                 for (j in array) {
                     tekst.append(j)
-                    tekst.append("    ")
+                    tekst.append("  ")
                 }
                 tekst.append("\n")
             }
@@ -183,7 +183,8 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
 
     fun playMove(row: Int, col: Int, isMine: Boolean): Boolean {
 
-
+        if(!isValid(row,col))
+            return false
         if (visibleBoard[row][col] != '-' && visibleBoard[row][col] != '?')
             return false
 
@@ -194,26 +195,27 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
             isDone = true
             showBoard(1)
             return true
-        } else {
+        }
+        else {
             var adjNum = boardIgrac[row][col]
-            visibleBoard[row][col] = adjNum.toChar()
-
+            visibleBoard[row][col] = adjNum.toChar() + 48
             if (adjNum == 0) {
-                if (isValid(row - 1, col) && boardIgrac[row - 1][col] == -1)
+                println(adjNum)
+                if (isValid(row - 1, col) && boardIgrac[row - 1][col] != -1)
                     playMove(row - 1, col, isMine)
-                if (isValid(row + 1, col) && boardIgrac[row + 1][col] == -1)
+                if (isValid(row + 1, col) && boardIgrac[row + 1][col] != -1) 
                     playMove(row + 1, col, isMine)
-                if (isValid(row, col + 1) && boardIgrac[row][col + 1] == -1)
+                if (isValid(row, col + 1) && boardIgrac[row][col + 1] != -1)
                     playMove(row, col + 1,isMine)
-                if (isValid(row, col - 1) && boardIgrac[row][col - 1] == -1)
+                if (isValid(row, col - 1) && boardIgrac[row][col - 1] != -1)
                     playMove(row, col - 1,isMine)
-                if (isValid(row - 1, col + 1) && boardIgrac[row - 1][col + 1] == -1)
+                if (isValid(row - 1, col + 1) && boardIgrac[row - 1][col + 1] != -1)
                     playMove(row - 1, col + 1,isMine)
-                if (isValid(row - 1, col - 1) && boardIgrac[row - 1][col - 1] == -1)
+                if (isValid(row - 1, col - 1) && boardIgrac[row - 1][col - 1] != -1)
                     playMove(row - 1, col - 1, isMine)
-                if (isValid(row + 1, col + 1) && boardIgrac[row + 1][col + 1] == -1)
+                if (isValid(row + 1, col + 1) && boardIgrac[row + 1][col + 1] != -1)
                     playMove(row + 1, col + 1, isMine)
-                if (isValid(row + 1, col - 1) && boardIgrac[row + 1][col - 1] == -1)
+                if (isValid(row + 1, col - 1) && boardIgrac[row + 1][col - 1] != -1)
                     playMove(row + 1, col - 1, isMine)
             }
             return false
