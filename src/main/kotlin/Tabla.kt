@@ -6,6 +6,8 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
     var startRow: Int = 0
     var startCol: Int = 0
 
+    var isFirst : Boolean = true
+
     private var minesLeft : Int = 0
     var flagsLeft: Int = 0
 
@@ -22,7 +24,6 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
             "ADVANCED" -> {
                 boardEdge = 24; numOfMines = 99; minesLeft = 99; flagsLeft = 99
             }
-            else -> 0
         }
     }
 
@@ -172,42 +173,52 @@ class Tabla (val nivo : Level, val automaticSolver : Boolean) {
 
     fun playMove(row: Int, col: Int, isMine: Boolean): Boolean {
 
+        if (isFirst){
+            startRow = row
+            startCol = col
+            isFirst = false
+        }
+
         if(!isValid(row,col))
             return false
         if (visibleBoard[row][col] != '-' && visibleBoard[row][col] != '?')
             return false
 
         if(!isMine){
-        if (boardIgrac[row][col] == -1) {
-            visibleBoard[row][col] = '*'
-            println("You lost!")
-            isDone = true
-            showBoard(1)
-            return true
-        }
-        else {
-            var adjNum = boardIgrac[row][col]
-            visibleBoard[row][col] = adjNum.toChar() + 48
-            if (adjNum == 0) {
-                println(adjNum)
-                if (isValid(row - 1, col) && boardIgrac[row - 1][col] != -1)
-                    playMove(row - 1, col, isMine)
-                if (isValid(row + 1, col) && boardIgrac[row + 1][col] != -1) 
-                    playMove(row + 1, col, isMine)
-                if (isValid(row, col + 1) && boardIgrac[row][col + 1] != -1)
-                    playMove(row, col + 1,isMine)
-                if (isValid(row, col - 1) && boardIgrac[row][col - 1] != -1)
-                    playMove(row, col - 1,isMine)
-                if (isValid(row - 1, col + 1) && boardIgrac[row - 1][col + 1] != -1)
-                    playMove(row - 1, col + 1,isMine)
-                if (isValid(row - 1, col - 1) && boardIgrac[row - 1][col - 1] != -1)
-                    playMove(row - 1, col - 1, isMine)
-                if (isValid(row + 1, col + 1) && boardIgrac[row + 1][col + 1] != -1)
-                    playMove(row + 1, col + 1, isMine)
-                if (isValid(row + 1, col - 1) && boardIgrac[row + 1][col - 1] != -1)
-                    playMove(row + 1, col - 1, isMine)
+
+            if(visibleBoard[row][col] == '?')
+                flagsLeft ++
+
+            if (boardIgrac[row][col] == -1) {
+                visibleBoard[row][col] = '*'
+                println("You lost!")
+                isDone = true
+                showBoard(1)
+                return true
             }
-            return false
+            else {
+                var adjNum = boardIgrac[row][col]
+                visibleBoard[row][col] = adjNum.toChar() + 48
+                if (adjNum == 0) {
+                    if (isValid(row - 1, col) && boardIgrac[row - 1][col] != -1)
+                        playMove(row - 1, col, isMine)
+                    if (isValid(row + 1, col) && boardIgrac[row + 1][col] != -1)
+                        playMove(row + 1, col, isMine)
+                    if (isValid(row, col + 1) && boardIgrac[row][col + 1] != -1)
+                        playMove(row, col + 1,isMine)
+                    if (isValid(row, col - 1) && boardIgrac[row][col - 1] != -1)
+                        playMove(row, col - 1,isMine)
+                    if (isValid(row - 1, col + 1) && boardIgrac[row - 1][col + 1] != -1)
+                        playMove(row - 1, col + 1,isMine)
+                    if (isValid(row - 1, col - 1) && boardIgrac[row - 1][col - 1] != -1)
+                        playMove(row - 1, col - 1, isMine)
+                    if (isValid(row + 1, col + 1) && boardIgrac[row + 1][col + 1] != -1)
+                        playMove(row + 1, col + 1, isMine)
+                    if (isValid(row + 1, col - 1) && boardIgrac[row + 1][col - 1] != -1)
+                        playMove(row + 1, col - 1, isMine)
+                }
+
+                return false
             }
         }
 

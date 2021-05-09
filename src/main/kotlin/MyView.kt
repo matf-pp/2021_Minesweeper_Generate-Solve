@@ -10,11 +10,11 @@ import javafx.scene.layout.VBox
 import tornadofx.*
 import javax.swing.JButton
 
-class MyView : View("Minesweeper_GenerateAndSolve") {
-   private val toggleGroup1 = ToggleGroup()
-   private val toggleGroup2 = ToggleGroup().apply {
-       selectedValueProperty<Level>().value = Level.BEGINNER
-   }
+class MyView : View("Minesweeper: Generate&Solve") {
+    private val toggleGroup1 = ToggleGroup()
+    private val toggleGroup2 = ToggleGroup().apply {
+        selectedValueProperty<Level>().value = Level.BEGINNER
+    }
 
     override val root: HBox = hbox(20, alignment = Pos.CENTER) {
         minHeight=500.0
@@ -23,7 +23,7 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
             backgroundColor += c("#003366")
         }
         vbox(10) {
-            label("Minesweeper_GenerateAndSolve ") {
+            label("Minesweeper: Generate & Solve ") {
                 style {
                     paddingAll=20
                     fontSize = 40.px
@@ -99,31 +99,31 @@ class MyView : View("Minesweeper_GenerateAndSolve") {
                 }
                 radiobutton ("Advanced", toggleGroup2, Level.ADVANCED) {
                     style{ fontFamily = "Monospace"
-                            textFill = c("#ffffff")}
+                        textFill = c("#ffffff")}
                 }
             }
-        /*  Ovo je izbaceno i dodat menubar umesto ovoga   vbox {
-                spacing=40.0
-                alignment=Pos.CENTER
-                label("Izlaz: ") {
-                    style {
-                        paddingAll=20
-                        fontSize = 25.px
-                        textFill = c("#ff0000")
-                        alignment = Pos.TOP_CENTER
-                        fontFamily = "Comic Sans MS"
+            /*  Ovo je izbaceno i dodat menubar umesto ovoga   vbox {
+                    spacing=40.0
+                    alignment=Pos.CENTER
+                    label("Izlaz: ") {
+                        style {
+                            paddingAll=20
+                            fontSize = 25.px
+                            textFill = c("#ff0000")
+                            alignment = Pos.TOP_CENTER
+                            fontFamily = "Comic Sans MS"
 
+                        }
+                    }
+                    button("Izlaz") {
+                        style{ fontFamily = "Comic Sans MS"
+                               textFill=c("#ff0000")}
+                        action { Platform.exit()}
                     }
                 }
-                button("Izlaz") {
-                    style{ fontFamily = "Comic Sans MS"
-                           textFill=c("#ff0000")}
-                    action { Platform.exit()}
-                }
-            }
-           */
+               */
 
         }
-        }
-
     }
+
+}

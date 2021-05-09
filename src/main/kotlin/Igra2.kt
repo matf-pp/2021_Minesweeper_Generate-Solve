@@ -4,7 +4,7 @@ import javafx.scene.control.ToggleGroup
 import javafx.scene.layout.HBox
 import tornadofx.*
 
-class Igra2 : View("Minesweeper_GenerateAndSolve") {
+class Igra2 : View("Minesweeper: Generate&Solve") {
     private val toggleGroup = ToggleGroup()
     override val root: HBox = hbox(20, alignment = Pos.CENTER) {
         style {
@@ -22,7 +22,7 @@ class Igra2 : View("Minesweeper_GenerateAndSolve") {
 
         vbox(10) {
             //zasto labela nije na sredini kada se uveca ??
-            label(" Minesweeper_GenerateAndSolve ") {
+            label(" Minesweeper: Generate&Solve ") {
                 style {
                     paddingAll = 20
                     fontSize = 40.px

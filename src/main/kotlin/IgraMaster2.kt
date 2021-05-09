@@ -22,16 +22,16 @@ class IgraMaster2(private val level: Level): View("Minesweeper_GenerateAndSolve"
                     tabla.initializeBoard()
                     prostor1.text = tabla.showBoard(2)
                 }
-                    style{
-                  fontFamily = "Monospace"
-              }
+                style{
+                    fontFamily = "Monospace"
+                }
             }
-           prostor1= textarea() {
-               style {
-                   fontFamily = "Monospace"
-               }
-               isEditable = false
-               text=tabla.showBoard(2)
+            prostor1= textarea() {
+                style {
+                    fontFamily = "Monospace"
+                }
+                isEditable = false
+                text=tabla.showBoard(2)
                 minHeight=500.0
                 minWidth=500.0
                 maxWidth=500.0
@@ -44,16 +44,16 @@ class IgraMaster2(private val level: Level): View("Minesweeper_GenerateAndSolve"
             paddingAll=20
             button("Solve"){
                 action {
-                  //  tabla = Tabla(level, true)
-                 //   tabla.initializeBoard()
-                     val solver = Solver(level)
+                    //  tabla = Tabla(level, true)
+                    //   tabla.initializeBoard()
+                    val solver = Solver(level)
                     solver.tabla = tabla
                     solver.play()
                     prostor2.text=tabla.showBoard(1)
                 }
-            style{
-                fontFamily = "Monospace"
-            }
+                style{
+                    fontFamily = "Monospace"
+                }
             }
             prostor2=textarea {
                 style {
