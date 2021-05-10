@@ -102,26 +102,7 @@ class MyView : View("Minesweeper: Generate&Solve") {
                         textFill = c("#ffffff")}
                 }
             }
-            /*  Ovo je izbaceno i dodat menubar umesto ovoga   vbox {
-                    spacing=40.0
-                    alignment=Pos.CENTER
-                    label("Izlaz: ") {
-                        style {
-                            paddingAll=20
-                            fontSize = 25.px
-                            textFill = c("#ff0000")
-                            alignment = Pos.TOP_CENTER
-                            fontFamily = "Comic Sans MS"
 
-                        }
-                    }
-                    button("Izlaz") {
-                        style{ fontFamily = "Comic Sans MS"
-                               textFill=c("#ff0000")}
-                        action { Platform.exit()}
-                    }
-                }
-               */
 
         }
     }

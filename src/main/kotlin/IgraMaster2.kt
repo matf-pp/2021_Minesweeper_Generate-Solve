@@ -44,8 +44,7 @@ class IgraMaster2(private val level: Level): View("Minesweeper_GenerateAndSolve"
             paddingAll=20
             button("Solve"){
                 action {
-                    //  tabla = Tabla(level, true)
-                    //   tabla.initializeBoard()
+
                     val solver = Solver(level)
                     solver.tabla = tabla
                     solver.play()
