@@ -20,7 +20,7 @@ class IgraMaster1(var tabla: Tabla): View("Minesweeper: Generate&Solve") {
     private val koordinatay=SimpleObjectProperty<String>()
     private val selectedIzborProperty=SimpleObjectProperty<Izbor>()
     private val isDoneProperty = SimpleObjectProperty<Boolean>(false)
-//    private val isWonProperty = SimpleObjectProperty<Boolean>()
+
 
     private val flagsLeftProperty = SimpleObjectProperty<String>("Flags left: ${tabla.flagsLeft}")
 
@@ -96,8 +96,8 @@ class IgraMaster1(var tabla: Tabla): View("Minesweeper: Generate&Solve") {
                     }
                     disableWhen(isDoneProperty)
                     action {
-                        val x=koordinatax.value.toIntOrNull()
-                        val y=koordinatay.value.toIntOrNull()
+                        val x=koordinatax.value?.toIntOrNull()
+                        val y=koordinatay.value?.toIntOrNull()
                         if( x!= null && y!=null){
                             when(selectedIzborProperty.value){
                                 Izbor.MINA -> {
