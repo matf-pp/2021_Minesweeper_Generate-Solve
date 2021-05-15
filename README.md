@@ -11,6 +11,7 @@ Ovaj projekat se sastoji iz *dva dela*:
 * Automatski resavac za nasumicno generisanu mapu
 
 Za oba dela postoje tri *nivoa tezine* koji se mogu izabrati: Beginner, Intermediate i Advanced. U zavisnosti od nivoa tezine, odredjuju se dimenzije table za igru, kao i broj mina koje treba pronaci.
+
 ![image](https://user-images.githubusercontent.com/80039017/118365430-157df000-b59d-11eb-8aad-cef1e1080048.png)
 
 ### Generator
@@ -18,6 +19,10 @@ Za oba dela postoje tri *nivoa tezine* koji se mogu izabrati: Beginner, Intermed
 Igracu se dopusta da odabere prvo polje na tabli. To polje ne sme biti mina. Zatim, generisu se nasumicne koordinate X i Y, i na taj nacin se postavljaju mine na tabli. Nakon toga se sva ostala polja azuriraju tako da u sebi imaju broj koji odgovara ukupnom broju mina u njihovih 8 susednih polja.
 
 Igrac moze nastaviti da otvara polja i oznacava mine, bas kao i u poznatoj igri. Igrac pobedjuje ukoliko oznaci sve mine, a gubi ukoliko otvori minu.
+
+Primer igre za igraca tezine Beginner:
+
+![image](https://user-images.githubusercontent.com/80039017/118365942-fe400200-b59e-11eb-9e30-73036e32c6d7.png)
 
 ### Resavac
 
