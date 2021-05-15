@@ -30,6 +30,10 @@ Kako bi univerzalni resavac koji resava zadatu tablu kao covek bilo veoma tesko 
 Ovaj resavac primice tablu na cijim poljima su brojevi od 0 do 9. Ovi brojevi predstavljaju *broj mina u okolini tog polja, ukljucujuci i to konkretno polje*.
 Nakon pokretanja resavaca, dobija se mapa sa jednim mogucim rasporedom mina u tako postavljenoj tabli.
 
+Primer resavaca za tezinu Intermediate:
+
+![image](https://user-images.githubusercontent.com/80039017/118367066-2892bf00-b5a1-11eb-8333-4d7b5f6129bd.png)
+
 ## Jezik i Tehnologije
 
 Projekat je radjen u jeziku Kotlin, u okruzenju IntelliJ IDEA. Od biblioteka, za GUI je koriscen TornadoFX.
