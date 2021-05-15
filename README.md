@@ -11,6 +11,7 @@ Ovaj projekat se sastoji iz *dva dela*:
 * Automatski resavac za nasumicno generisanu mapu
 
 Za oba dela postoje tri *nivoa tezine* koji se mogu izabrati: Beginner, Intermediate i Advanced. U zavisnosti od nivoa tezine, odredjuju se dimenzije table za igru, kao i broj mina koje treba pronaci.
+![Alt text](/Users/sanjamenjakmaksimovic/Desktop/prviprozor.png?raw=true)
 
 ### Generator
 
