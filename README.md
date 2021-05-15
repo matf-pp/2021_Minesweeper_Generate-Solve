@@ -1,5 +1,9 @@
 # 2021_Minesweeper_GenerateAndSolve
 
+## Inspiracija za ovaj projekat
+
+Inspiracija za ovaj projekat je igrica Minesweeper.Cilj igre je da se otvore sva polja bez detoniranja mina.Postoje tri stanja polja: otvoreno, neotvoreno i flagged (postavljena zastavica na tom polju).Zastavice nam sluze kao pomoc da odredimo gde se nalaze mine i njihov broj je jednak broju mina.Svako otvoreno polje koje nije mina sadrzi podatak o tome koliko mina se nalazi u susednim poljima.Detaljnije o igri na sledecem linku: https://en.wikipedia.org/wiki/Minesweeper_(video_game).
+
 ## O projektu
 
 Ovaj projekat se sastoji iz *dva dela*:
