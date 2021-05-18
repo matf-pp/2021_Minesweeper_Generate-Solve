@@ -40,7 +40,11 @@ Projekat je radjen u jeziku Kotlin, u okruzenju IntelliJ IDEA. Od biblioteka, za
 
 ## Pokretanje
 
-Za pokretanje potrebno je imati JavaFX biblioteku, koju mozete preuzeti sa sajta: https://gluonhq.com/products/javafx/ .Preuzeti jar fajl (koji se nalazi u sekciji relases) se pokrece uz komande u terminalu tako sto se prvo pozicionirate u direktorijum u kom ste ga preuzeli, pa potom uneti komandu java -p /Users/tara/Desktop/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.base,javafx.fxml,javafx.graphics,javafx.media,javafx.web -jar 2021_Minesweeper_GenerateAndSolve.jar , gde je /Users/tara/Desktop/javafx-sdk-11.0.2/lib put do Vaseg JavaFX lib foldera.
+Za pokretanje potrebno je imati JavaFX biblioteku, koju mozete preuzeti sa sajta:
+https://gluonhq.com/products/javafx/ 
+Preuzeti jar fajl (koji se nalazi u sekciji relases) se pokrece uz komande u terminalu tako sto se prvo pozicionirate u direktorijum u kom ste ga preuzeli, pa potom uneti komandu:
+java -p /Users/tara/Desktop/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.base,javafx.fxml,javafx.graphics,javafx.media,javafx.web -jar 2021_Minesweeper_GenerateAndSolve.jar , 
+gde je /Users/tara/Desktop/javafx-sdk-11.0.2/lib put do Vaseg JavaFX lib foldera.
 
 ## Autori
 * Mila Lukic (milalukic222@gmail.com)
